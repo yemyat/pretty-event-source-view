@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EventSource JSON Viewer</title>
+    <link rel="stylesheet" href="./panel.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="toolbar">
+        <div class="brand">
+          <span class="brand-mark"></span>
+          <span>EventSource JSON</span>
+        </div>
+        <div class="toolbar-actions">
+          <input id="filterInput" class="filter-input" type="search" placeholder="Filter events" />
+          <button id="injectButton" type="button">Inject</button>
+          <button id="pauseButton" type="button">Pause</button>
+          <button id="clearButton" type="button">Clear</button>
+        </div>
+        <div id="status" class="status">Starting</div>
+      </header>
+
+      <section class="workspace">
+        <section class="event-list" aria-label="Captured events">
+          <div class="table-head">
+            <span>Id</span>
+            <span>Data</span>
+            <span>Time</span>
+          </div>
+          <div id="eventRows" class="event-rows"></div>
+        </section>
+
+        <div
+          id="splitter"
+          class="splitter"
+          role="separator"
+          aria-label="Resize panels"
+          aria-orientation="vertical"
+          tabindex="0"
+        ></div>
+
+        <aside class="detail-pane" aria-label="Event detail">
+          <div class="detail-head">
+            <div class="detail-info">
+              <div class="detail-title-row">
+                <div id="detailTitle" class="detail-title">No event selected</div>
+              </div>
+              <div class="detail-url-card">
+                <div id="detailUrlHost" class="detail-url-host"></div>
+                <div id="detailUrlPath" class="detail-url-path"></div>
+              </div>
+            </div>
+            <button id="copyButton" type="button">Copy</button>
+          </div>
+          <div class="detail-tabs" role="tablist">
+            <div class="tab-group">
+              <button id="prettyTab" class="tab-button active" type="button">Pretty JSON</button>
+              <button id="rawTab" class="tab-button" type="button">Raw</button>
+            </div>
+            <div class="tree-actions">
+              <button id="expandAllButton" class="tree-action" type="button">Expand all</button>
+              <button id="collapseAllButton" class="tree-action" type="button">Collapse all</button>
+            </div>
+          </div>
+          <div id="detailOutput" class="detail-output"></div>
+        </aside>
+      </section>
+    </main>
+
+    <script type="module" src="./panel.ts"></script>
+  </body>
+</html>

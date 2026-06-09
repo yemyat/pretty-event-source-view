@@ -1,0 +1,28 @@
+{
+  "name": "chrome-event-source",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vp build",
+    "check": "vp check",
+    "lint": "vp check --no-fmt",
+    "rolldown:version": "rolldown --version",
+    "test": "vp test run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.43",
+    "@types/node": "^25.9.2",
+    "oxc-parser": "^0.135.0",
+    "oxfmt": "^0.54.0",
+    "oxlint": "^1.69.0",
+    "oxlint-tsgolint": "^0.23.0",
+    "rolldown": "^1.1.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vite-plus": "^0.1.24",
+    "vitest": "^4.1.8"
+  },
+  "packageManager": "pnpm@10.33.4"
+}

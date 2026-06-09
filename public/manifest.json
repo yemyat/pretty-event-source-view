@@ -1,0 +1,7 @@
+{
+  "manifest_version": 3,
+  "name": "EventSource JSON Viewer",
+  "version": "0.1.0",
+  "description": "A Chrome DevTools panel for viewing Server-Sent Events with clickable pretty JSON output.",
+  "devtools_page": "src/devtools/devtools.html"
+}
