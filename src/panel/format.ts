@@ -54,7 +54,7 @@ export type SplitUrlResult = {
 };
 
 export function formatPayload(rawData: unknown): FormattedPayload {
-  const text = String(rawData ?? "");
+  const text = stringifyUnknown(rawData);
 
   try {
     const parsed = JSON.parse(text) as JsonValue;
@@ -76,6 +76,30 @@ export function formatPayload(rawData: unknown): FormattedPayload {
       summary: "Plain text",
       error: error instanceof Error ? error.message : "Invalid JSON",
     };
+  }
+}
+
+function stringifyUnknown(value: unknown): string {
+  if (value === null || value === undefined) {
+    return "";
+  }
+
+  if (typeof value === "string") {
+    return value;
+  }
+
+  if (typeof value === "number" || typeof value === "boolean" || typeof value === "bigint") {
+    return value.toString();
+  }
+
+  if (typeof value === "symbol") {
+    return value.description ? `Symbol(${value.description})` : "Symbol()";
+  }
+
+  try {
+    return JSON.stringify(value) ?? "";
+  } catch {
+    return Object.prototype.toString.call(value);
   }
 }
 
@@ -113,9 +137,7 @@ export function summarizeJson(value: JsonValue): string {
 }
 
 export function previewData(rawData: unknown, maxLength = 180): string {
-  const text = String(rawData ?? "")
-    .replace(/\s+/g, " ")
-    .trim();
+  const text = stringifyUnknown(rawData).replace(/\s+/g, " ").trim();
 
   if (text.length <= maxLength) {
     return text;
@@ -125,7 +147,7 @@ export function previewData(rawData: unknown, maxLength = 180): string {
 }
 
 export function splitUrl(rawUrl: unknown): SplitUrlResult {
-  const text = String(rawUrl ?? "").trim();
+  const text = stringifyUnknown(rawUrl).trim();
 
   if (!text) {
     return {
@@ -157,7 +179,7 @@ export function splitUrl(rawUrl: unknown): SplitUrlResult {
 }
 
 export function normalizeEvent(event: RawCapturedEvent, index: number): NormalizedEvent {
-  const data = String(event.data ?? "");
+  const data = stringifyUnknown(event.data);
   const time = event.time || new Date().toISOString();
 
   return {

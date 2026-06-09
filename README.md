@@ -4,8 +4,8 @@ A small Chrome DevTools panel for inspecting Server-Sent Events with clickable r
 
 ## Use it in Chrome
 
-1. Run `pnpm install`.
-2. Run `pnpm build`.
+1. Run `vp install`.
+2. Run `vp build`.
 3. Open `chrome://extensions`.
 4. Turn on Developer mode.
 5. Click Load unpacked.
@@ -16,12 +16,12 @@ A small Chrome DevTools panel for inspecting Server-Sent Events with clickable r
 
 The panel watches `EventSource`, `fetch` responses with `text/event-stream`, and basic streaming `XMLHttpRequest` responses. Data stays in the inspected page and the DevTools panel.
 
-## Test
+## Development
 
 ```sh
-pnpm check
-pnpm typecheck
-pnpm test
+vp check
+vp test
+vp build
 ```
 
-`pnpm check` runs the Vite+ formatter and Oxlint checks. `pnpm test` runs Vitest.
+Use `vp` for normal project commands. Vite+ still uses pnpm underneath because `package.json` declares `packageManager`, and `pnpm-lock.yaml` keeps installs repeatable.

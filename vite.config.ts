@@ -1,10 +1,19 @@
 import { resolve } from "node:path";
-import { defineConfig } from "vite";
+import { defineConfig } from "vite-plus";
 
 const injectedHookName = "src/panel/injected-hook";
 
 export default defineConfig({
   publicDir: "public",
+  lint: {
+    options: {
+      typeAware: true,
+      typeCheck: true,
+    },
+  },
+  test: {
+    include: ["test/**/*.test.ts"],
+  },
   build: {
     outDir: "dist",
     emptyOutDir: true,

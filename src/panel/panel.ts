@@ -64,16 +64,16 @@ const isDevTools = typeof chrome !== "undefined" && Boolean(chrome.devtools?.ins
 
 elements.injectButton.addEventListener("click", () => {
   if (isDevTools) {
-    injectWatcher();
+    void injectWatcher();
   }
 });
 
 elements.pauseButton.addEventListener("click", () => {
-  setPaused(!state.paused);
+  void setPaused(!state.paused);
 });
 
 elements.clearButton.addEventListener("click", () => {
-  clearEvents();
+  void clearEvents();
 });
 
 elements.copyButton.addEventListener("click", async () => {
@@ -111,9 +111,9 @@ if (isDevTools) {
     state.selectedRowId = null;
     state.renderedDetailKey = null;
     render();
-    injectWatcher();
+    void injectWatcher();
   });
-  injectWatcher();
+  void injectWatcher();
 } else {
   elements.injectButton.disabled = true;
   elements.pauseButton.disabled = true;
@@ -147,8 +147,8 @@ function startPolling() {
     window.clearInterval(state.pollTimer);
   }
 
-  state.pollTimer = window.setInterval(pollInspectedPage, 350);
-  pollInspectedPage();
+  state.pollTimer = window.setInterval(() => void pollInspectedPage(), 350);
+  void pollInspectedPage();
 }
 
 async function pollInspectedPage(): Promise<void> {

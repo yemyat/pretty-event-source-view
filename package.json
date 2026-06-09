@@ -3,14 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "scripts": {
-    "build": "vp build",
-    "check": "vp check",
-    "lint": "vp check --no-fmt",
-    "rolldown:version": "rolldown --version",
-    "test": "vp test run",
-    "typecheck": "tsc --noEmit"
-  },
   "devDependencies": {
     "@types/chrome": "^0.1.43",
     "@types/node": "^25.9.2",
